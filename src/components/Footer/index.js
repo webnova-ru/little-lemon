@@ -73,7 +73,7 @@ const Footer = () => {
                     }
                 </Flex>
                 <Flex justifyContent="flex-end">
-                    <Text color="primary.yellow" fontSize="sm" fontWeight="300">
+                    <Text fontSize="sm" fontWeight="300">
                         Copyright © 2023 Little Lemon
                     </Text>
                 </Flex>
