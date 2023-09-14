@@ -6,6 +6,7 @@ import Main from 'components/Main';
 import Home from 'pages/Home';
 import Booking from 'pages/Booking';
 import theme from 'theme';
+import { AlertProvider } from 'context/alertContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
+      <AlertProvider>
+        <RouterProvider router={router} />
+      </AlertProvider>
     </ChakraProvider>
   );
 }

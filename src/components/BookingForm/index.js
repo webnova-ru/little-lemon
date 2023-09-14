@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useFormik } from "formik";
 import { SingleDatepicker } from "chakra-dayzed-datepicker";
 import * as Yup from "yup";
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputLeftAddon, Select, Stack, Textarea } from "@chakra-ui/react";
+
+import useSubmit from "hooks/useSubmit";
+import { useAlertContext } from "context/alertContext";
 
 const availableTimes = [
     { time: "17:00", status: true },
@@ -14,6 +17,15 @@ const availableTimes = [
 ]
 
 const BookingForm = ({ isNonMobile }) => {
+    const { response, submit } = useSubmit();
+    const { onOpen } = useAlertContext();
+
+    useEffect(function () {
+        if (response) {
+            onOpen(response.type, response.message)
+        }
+    }, [response]);
+
     const formik = useFormik({
         initialValues: {
             guestNumber: 2,
@@ -25,7 +37,13 @@ const BookingForm = ({ isNonMobile }) => {
             comment: ""
         },
         onSubmit: async (values, event) => {
-            console.log(values, event);
+            try {
+                await submit('https://fakeapi.none', values);
+
+                event.resetForm();
+            } catch (error) { } finally {
+                event.setSubmitting(false);
+            }
         },
         validationSchema: Yup.object({
             guestNumber: Yup.number().positive().integer().min(2).max(10),
