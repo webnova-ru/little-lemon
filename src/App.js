@@ -22,7 +22,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <ChakraProvider theme={theme}>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </ChakraProvider>
   );
 }

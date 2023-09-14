@@ -1,14 +1,11 @@
-// import Highlights from "components/Highlight";
-// import Showcases from "components/Showcase";
-// import Testimonial from "components/Testimonial";
+import Highlights from "components/Highlight";
+import HeroSection from "components/HeroSection";
 
 const Home = () => {
     return (
         <>
-            {/* <Showcases />
+            <HeroSection />
             <Highlights />
-            <Testimonial /> */}
-            <h1>Home</h1>
         </>
     );
 };
